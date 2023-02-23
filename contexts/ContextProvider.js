@@ -7,11 +7,10 @@ export const ContextProvider = ({ children }) => {
     const [description, setDescription] = useState('');
     const [tasks, setTasks] = useState([]);
 
-    const addTask = (title, description) => {
+    const addTask = () => {
         setTasks([...tasks, { title: title, description: description }]);
         setTitle('');
-        setDescription('');
-        
+        setDescription('');    
     }
 
     return (
