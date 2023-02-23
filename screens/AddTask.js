@@ -1,12 +1,8 @@
-import { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
 import { useStateContext } from '../contexts/ContextProvider';
 
 const AddTask = ({ navigation }) => {
-    // const [title, setTitle] = useState('');
-    // const [description, setDescription] = useState('');
 
     const { addTask, setTitle, setDescription } = useStateContext();
 
@@ -18,7 +14,6 @@ const AddTask = ({ navigation }) => {
                 placeholder="Task Name"
                 onChangeText={
                     (newText) => {
-                        console.log(newText);
                         setTitle(newText)
                     }
                 }
@@ -30,7 +25,13 @@ const AddTask = ({ navigation }) => {
                 textAlign='left'
                 onChangeText={newText => setDescription(newText)}
             />
-            <TouchableOpacity style={styles.button} onPress={addTask}>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => {
+                    addTask();
+                    navigation.navigate('Home');
+                }}
+            >
                 <Text style={styles.buttonText}>Add Task</Text>
             </TouchableOpacity>
         </View>
